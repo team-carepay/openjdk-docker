@@ -33,7 +33,7 @@ RUN if [ -n "$AWS" ]; then \
     rm glibc-${GLIBC_VER}.apk && \
     rm glibc-bin-${GLIBC_VER}.apk && \
     curl -sL https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip && \
-    unzip awscliv2.zip && \
+    unzip -q awscliv2.zip && \
     aws/install && \
     rm -rf \
         awscliv2.zip \
