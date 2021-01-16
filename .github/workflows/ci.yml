@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        VERSION: [8, 8-jre, 11, 11-jre]
-        OS: [slim, alpine]
+        VERSION: [8, 11]
+        OS: [slim, alpine, zulu]
         AWS: ["", "-aws"]
     steps:
     - name: Checkout
