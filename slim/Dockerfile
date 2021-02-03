@@ -6,16 +6,17 @@ ARG AWS
 
 RUN \
     apt-get update && \
-    apt-get install -y \
+    apt-get install -y --no-install-recommends \
         curl \
         git \
         jq \
+        openssh-client \
         unzip \
     && \
     curl https://github.com/mikefarah/yq/releases/download/v4.2.0/yq_linux_amd64 -o /usr/bin/yq && \
     chmod +x /usr/bin/yq && \
     rm -rf /var/lib/apt/lists/* && \
-    apt-get clean 
+    apt-get clean
 
 RUN \
     if [ -n "$AWS" ]; then \

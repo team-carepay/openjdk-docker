@@ -10,27 +10,28 @@ ARG GLIBC_VER=2.31-r0
 RUN \
     apk add --no-cache \
         curl \
-        openjdk$VERSION \
         git \
         jq \
+        openjdk$VERSION \
+        openssh-client \
     && \
     curl https://github.com/mikefarah/yq/releases/download/v4.2.0/yq_linux_amd64 -o /usr/bin/yq && \
     chmod +x /usr/bin/yq && \
     rm -rf /var/cache/apk/*
 
 RUN if [ -n "$AWS" ]; then \
-    apk add --no-cache \
+    apk add --no-cache --virtual binutils-pack \
         binutils \
     && \
     curl -sL https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub -o /etc/apk/keys/sgerrand.rsa.pub && \
     curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-${GLIBC_VER}.apk && \
     curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-bin-${GLIBC_VER}.apk && \
-    apk add --no-cache \
+    apk add --no-cache --virtual glibc-pack \
         glibc-${GLIBC_VER}.apk \
         glibc-bin-${GLIBC_VER}.apk \
     && \
     apk --no-cache del \
-        binutils \
+        binutils-pack \
     && \
     rm glibc-${GLIBC_VER}.apk && \
     rm glibc-bin-${GLIBC_VER}.apk && \
