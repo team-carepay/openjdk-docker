@@ -8,11 +8,12 @@ Alpine|[8-alpine](https://hub.docker.com/r/carepaydev/openjdk/tags?page=1&orderi
 Zulu|[8-zulu](https://hub.docker.com/r/carepaydev/openjdk/tags?page=1&ordering=last_updated&name=8-zulu)|[11-zulu](https://hub.docker.com/r/carepaydev/openjdk/tags?page=1&ordering=last_updated&name=11-zulu)
 
 The following packages are included:
-* OpenJDK
 * curl
 * git
 * jq
-* yq
+* OpenJDK
+* OpenSSH client
 * unzip
+* yq
 
 ### License: Apache 2.0
