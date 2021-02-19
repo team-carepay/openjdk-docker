@@ -13,7 +13,7 @@ RUN \
         openssh-client \
         unzip \
     && \
-    curl https://github.com/mikefarah/yq/releases/download/v4.2.0/yq_linux_amd64 -o /usr/bin/yq && \
+    curl -sL https://github.com/mikefarah/yq/releases/download/v4.2.0/yq_linux_amd64 -o /usr/bin/yq && \
     chmod +x /usr/bin/yq && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get clean
