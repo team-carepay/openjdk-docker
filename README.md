@@ -16,4 +16,5 @@ The following packages are included:
 * unzip
 * yq
 
+[nojdk](https://hub.docker.com/r/carepaydev/openjdk/tags?page=1&ordering=last_updated&name=nojdk-nojdk)
 ### License: Apache 2.0

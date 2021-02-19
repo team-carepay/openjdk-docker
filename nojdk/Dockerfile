@@ -1,6 +1,6 @@
-ARG VERSION=8-jdk
+ARG VERSION
 
-FROM openjdk:$VERSION-slim-buster
+FROM debian:buster-slim
 
 ARG AWS
 ARG YQ=v4.6.0
@@ -8,6 +8,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN \
     apt-get update && \
     apt-get install -y --no-install-recommends \
+        ca-certificates \
         curl \
         git \
         jq \

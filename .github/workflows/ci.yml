@@ -12,7 +12,13 @@ jobs:
       matrix:
         VERSION: [8, 11]
         OS: [slim, alpine, zulu]
-        AWS: ["", "-aws"]
+        AWS: ['', -aws]
+        YQ: [v3.4.1]
+        include:
+        - VERSION: nojdk
+          OS: nojdk
+          AWS: ''
+          YQ: v3.4.1
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -24,3 +30,4 @@ jobs:
           VERSION=${{ matrix.VERSION }}
           OS=${{ matrix.OS }}
           AWS=${{ matrix.AWS }}
+          YQ=${{ matrix.YQ }}

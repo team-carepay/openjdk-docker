@@ -2,8 +2,9 @@ ARG ALPINEVERSION=3.11
 
 FROM alpine:$ALPINEVERSION
 
-ARG VERSION="11"
+ARG VERSION=11
 ARG AWS
+ARG YQ=v4.6.0
 ARG GLIBC_VER=2.31-r0
 
 # install glibc compatibility for alpine
@@ -15,7 +16,7 @@ RUN \
         openjdk$VERSION \
         openssh-client \
     && \
-    curl -sL https://github.com/mikefarah/yq/releases/download/v4.2.0/yq_linux_amd64 -o /usr/bin/yq && \
+    curl -sL https://github.com/mikefarah/yq/releases/download/$YQ/yq_linux_amd64 -o /usr/bin/yq && \
     chmod +x /usr/bin/yq && \
     rm -rf /var/cache/apk/*
 
