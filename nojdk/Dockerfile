@@ -3,7 +3,7 @@ ARG VERSION
 FROM debian:buster-slim
 
 ARG AWS
-ARG YQ=v4.6.0
+ARG YQ=3.4.1
 ENV DEBIAN_FRONTEND=noninteractive
 RUN \
     apt-get update && \
