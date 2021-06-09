@@ -9,6 +9,7 @@ ARG GLIBC_VER=2.31-r0
 
 # install glibc compatibility for alpine
 RUN \
+    echo "https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories &&
     apk add --no-cache \
         curl \
         git \
