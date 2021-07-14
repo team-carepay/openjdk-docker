@@ -10,10 +10,12 @@ ARG GLIBC_VER=2.32-r0
 RUN \
     apk add --no-cache \
         curl \
+        docker-cli \
         git \
         jq \
         openssh-client \
     && \
+    curl -L https://raw.githubusercontent.com/docker/compose-cli/main/scripts/install/install_linux.sh | sh && \
     curl -sL https://github.com/mikefarah/yq/releases/download/$YQ/yq_linux_amd64 -o /usr/bin/yq && \
     chmod +x /usr/bin/yq && \
     rm -rf /var/cache/apk/*

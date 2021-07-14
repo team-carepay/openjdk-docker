@@ -9,11 +9,13 @@ RUN \
     apt-get update && \
     apt-get install -y --no-install-recommends \
         curl \
+        docker-cli \
         git \
         jq \
         openssh-client \
         unzip \
     && \
+    curl -L https://raw.githubusercontent.com/docker/compose-cli/main/scripts/install/install_linux.sh | sh && \
     curl -sL https://github.com/mikefarah/yq/releases/download/$YQ/yq_linux_amd64 -o /usr/bin/yq && \
     chmod +x /usr/bin/yq && \
     rm -rf /var/lib/apt/lists/* && \
