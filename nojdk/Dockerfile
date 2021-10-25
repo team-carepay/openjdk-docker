@@ -43,4 +43,5 @@ RUN \
           /usr/local/aws-cli/v2/*/dist/aws_completer \
           /usr/local/aws-cli/v2/*/dist/awscli/data/ac.index \
           /usr/local/aws-cli/v2/*/dist/awscli/examples \
+    ; \
     fi
