@@ -4,7 +4,7 @@ FROM azul/zulu-openjdk-alpine:$VERSION
 
 ARG AWS
 ARG YQ=v4.6.0
-ARG GLIBC_VER=2.32-r0
+ARG GLIBC_VER=2.34-r0
 
 # install glibc compatibility for alpine
 RUN \
