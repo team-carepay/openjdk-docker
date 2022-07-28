@@ -37,6 +37,12 @@ RUN \
       curl -sL https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip && \
       unzip -q awscliv2.zip && \
       aws/install && \
+      apt-get update && \
+      apt-get install -y --no-install-recommends \
+          amazon-ecr-credential-helper \
+      && \
+      rm -rf /var/lib/apt/lists/* && \
+      apt-get clean && \
       rm -rf \
           awscliv2.zip \
           aws \
