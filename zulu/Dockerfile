@@ -10,6 +10,7 @@ ARG AWSCLI_VERSION=2.6.1
 # install glibc compatibility for alpine
 RUN \
     apk add --no-cache \
+        bash \
         curl \
         docker-cli \
         git \
@@ -58,3 +59,4 @@ RUN \
 
 ENV JAVA_HOME=/usr/lib/jvm/default-jvm
 ENV PATH=$PATH:$JAVA_HOME/bin
+ENTRYPOINT ["/bin/bash"]

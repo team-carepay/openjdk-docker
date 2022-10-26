@@ -9,6 +9,7 @@ RUN \
     apt-get update && \
     apt-get install -y --no-install-recommends \
         apt-transport-https \
+        bash \
         ca-certificates \
         curl \
         git \
@@ -52,3 +53,4 @@ RUN \
       && \
       find /usr/local/aws-cli/v2/current/dist/awscli/botocore/data -name examples-1.json -delete; \
     fi
+ENTRYPOINT ["/bin/bash"]

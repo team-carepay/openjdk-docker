@@ -12,6 +12,7 @@ ARG AWSCLI_VERSION=2.6.1
 RUN \
     echo "https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
     apk add --no-cache \
+        bash \
         curl \
         docker-cli \
         docker-compose \
@@ -58,3 +59,4 @@ RUN \
       && \
       find /usr/local/aws-cli/v2/current/dist/awscli/botocore/data -name examples-1.json -delete; \
     fi
+ENTRYPOINT ["/bin/bash"]
