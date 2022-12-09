@@ -6,7 +6,7 @@ ARG VERSION=11
 ARG AWS
 ARG YQ=v4.6.0
 ARG GLIBC_VER=2.35-r0
-ARG AWSCLI_VERSION=2.6.1
+ARG AWSCLI_VERSION=2.9.0
 
 # install glibc compatibility for alpine
 RUN \
