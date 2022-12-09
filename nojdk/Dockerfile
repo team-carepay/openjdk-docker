@@ -14,6 +14,7 @@ RUN \
         git \
         gnupg2 \
         jq \
+        kubectl \
         lsb-release \
         software-properties-common \
         openssh-client \

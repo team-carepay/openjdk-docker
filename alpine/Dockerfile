@@ -18,6 +18,7 @@ RUN \
         docker-compose \
         git \
         jq \
+        kubectl \
         openjdk$VERSION \
         openssh-client \
     && \
