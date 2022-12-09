@@ -14,7 +14,6 @@ RUN \
         git \
         gnupg2 \
         jq \
-        kubectl \
         lsb-release \
         software-properties-common \
         openssh-client \
@@ -22,9 +21,12 @@ RUN \
     && \
     curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && \
     add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable" && \
+    curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
+    add-apt-repository "deb [arch=amd64] https://apt.kubernetes.io/ kubernetes-xenial main" && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
         docker-ce-cli \
+        kubectl \
     && \
     curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && \
     chmod a+x /usr/local/bin/docker-compose && \
