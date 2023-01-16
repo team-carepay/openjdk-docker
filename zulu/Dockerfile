@@ -18,8 +18,11 @@ RUN \
         openssh-client \
     && \
     curl -L https://raw.githubusercontent.com/docker/compose-cli/main/scripts/install/install_linux.sh | sh && \
-    curl -sL https://github.com/mikefarah/yq/releases/download/$YQ/yq_linux_amd64 -o /usr/bin/yq && \
+    curl -sL https://github.com/mikefarah/yq/releases/download/3.4.1/yq_linux_amd64 -o /usr/bin/yq3 && \
     chmod +x /usr/bin/yq && \
+    curl -sL https://github.com/mikefarah/yq/releases/download/$YQ/yq_linux_amd64 -o /usr/bin/yq4 && \
+    chmod +x /usr/bin/yq4 && \
+    ln -s yq3 /usr/local/bin/yq && \
     rm -rf /var/cache/apk/*
 
 RUN \
