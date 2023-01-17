@@ -26,7 +26,7 @@ RUN \
     chmod +x /usr/bin/yq && \
     curl -sL https://github.com/mikefarah/yq/releases/download/$YQ/yq_linux_amd64 -o /usr/bin/yq4 && \
     chmod +x /usr/bin/yq4 && \
-    ln -s yq3 /usr/local/bin/yq && \
+    ln -s yq4 /usr/local/bin/yq && \
     rm -rf /var/cache/apk/* /usr/lib/jvm/default-jvm/demo /usr/lib/jvm/default-jvm/man
 
 RUN \
