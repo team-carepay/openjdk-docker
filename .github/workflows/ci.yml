@@ -13,12 +13,12 @@ jobs:
         VERSION: [8, 11, 17]
         OS: [slim, alpine, zulu]
         AWS: ['', -aws]
-        YQ: [4.6.0]
+        YQ: [v4.30.8]
         include:
         - VERSION: nojdk
           OS: nojdk
           AWS: ''
-          YQ: 4.6.0
+          YQ: v4.30.8
     steps:
     - name: Checkout
       uses: actions/checkout@v2

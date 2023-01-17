@@ -3,7 +3,7 @@ ARG VERSION=8-jdk
 FROM openjdk:$VERSION-slim-buster
 
 ARG AWS
-ARG YQ=v4.6.0
+ARG YQ=v4.30.8
 ENV DEBIAN_FRONTEND=noninteractive
 RUN \
     apt-get update && \
