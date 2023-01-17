@@ -33,9 +33,8 @@ RUN \
     chmod a+x /usr/local/bin/docker-compose && \
     curl -sL https://github.com/mikefarah/yq/releases/download/3.4.1/yq_linux_amd64 -o /usr/local/bin/yq3 && \
     chmod +x /usr/local/bin/yq3 && \
-    curl -sL https://github.com/mikefarah/yq/releases/download/${YQ}/yq_linux_amd64 -o /usr/local/bin/yq4 && \
-    chmod +x /usr/local/bin/yq4 && \
-    ln -s yq4 /usr/local/bin/yq && \
+    curl -sL https://github.com/mikefarah/yq/releases/download/${YQ}/yq_linux_amd64 -o /usr/local/bin/yq && \
+    chmod +x /usr/local/bin/yq && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get clean
 
