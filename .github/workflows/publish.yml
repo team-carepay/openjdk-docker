@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        VERSION: [8, 11, 17]
+        VERSION: [8, 11, 17, 21]
         OS: [slim, alpine, zulu]
         AWS: ['', -aws]
         YQ: [v4.30.8]

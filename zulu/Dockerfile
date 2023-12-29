@@ -5,7 +5,7 @@ FROM azul/zulu-openjdk-alpine:$VERSION
 ARG AWS
 ARG YQ=v4.30.8
 ARG GLIBC_VER=2.35-r0
-ARG AWSCLI_VERSION=2.9.0
+ARG AWSCLI_VERSION=2.15.5
 
 # install glibc compatibility for alpine
 RUN \
@@ -32,16 +32,9 @@ RUN \
       curl -sL https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub -o /etc/apk/keys/sgerrand.rsa.pub && \
       curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-${GLIBC_VER}.apk && \
       curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-bin-${GLIBC_VER}.apk && \
-      apk add --no-cache --virtual binutils \
-          glibc-${GLIBC_VER}.apk \
-          glibc-bin-${GLIBC_VER}.apk \
-      && \
+      apk add --force-overwrite glibc-${GLIBC_VER}.apk && \
+      apk add --force-overwrite glibc-bin-${GLIBC_VER}.apk && \
       ln -sf /usr/glibc-compat/lib/ld-linux-x86-64.so.2 /lib64/ld-linux-x86-64.so.2 && \
-      apk --no-cache del \
-          binutils-pack \
-      && \
-      rm glibc-${GLIBC_VER}.apk && \
-      rm glibc-bin-${GLIBC_VER}.apk && \
       curl -sL https://awscli.amazonaws.com/awscli-exe-linux-x86_64-${AWSCLI_VERSION}.zip -o awscliv2.zip && \
       unzip -q awscliv2.zip && \
       aws/install && \
