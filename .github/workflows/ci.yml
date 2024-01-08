@@ -10,15 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        VERSION: [8, 11, 17]
-        OS: [slim, alpine, zulu]
+        VERSION: [8, 11, 17, 21]
+        OS: [slim, alpine]
         AWS: ['', -aws]
-        YQ: [v4.30.8]
+        YQ: [v4.35.2]
         include:
         - VERSION: nojdk
           OS: nojdk
           AWS: ''
-          YQ: v4.30.8
+          YQ: v4.35.2
     steps:
     - name: Checkout
       uses: actions/checkout@v2

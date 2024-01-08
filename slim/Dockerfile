@@ -1,6 +1,6 @@
 ARG VERSION=8-jdk
 
-FROM openjdk:$VERSION-slim-buster
+FROM openjdk:$VERSION-slim-bookworm
 
 ARG AWS
 ARG YQ=v4.30.8
@@ -23,13 +23,13 @@ RUN \
     curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && \
     add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable" && \
     curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
-    add-apt-repository "deb [arch=amd64] https://apt.kubernetes.io/ kubernetes-xenial main" && \
+    add-apt-repository "deb [arch=amd64] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
         docker-ce-cli \
         kubectl \
     && \
-    curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && \
+    curl -L "https://github.com/docker/compose/releases/download/v2.23.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && \
     chmod a+x /usr/local/bin/docker-compose && \
     curl -sL https://github.com/mikefarah/yq/releases/download/3.4.1/yq_linux_amd64 -o /usr/local/bin/yq3 && \
     chmod +x /usr/local/bin/yq3 && \
