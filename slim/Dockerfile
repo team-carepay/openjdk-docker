@@ -38,6 +38,7 @@ RUN \
     if [ -n "${AWS_CLI_VERSION}" ]; then \
         apt-get -qq install -y --no-install-recommends \
             awscli \
+            amazon-ecr-credential-helper \
         ; \
     fi && \
     curl -L "https://github.com/docker/compose/releases/download/v2.23.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && \
