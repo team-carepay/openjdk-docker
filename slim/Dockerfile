@@ -30,7 +30,7 @@ RUN \
     && \
     if [ "${JDK_VERSION}" != "nojdk" ]; then \
         apt-get install -y --no-install-recommends \
-            openjdk-${JDK_VERSION}-jdk-headless \
+            openjdk-${JDK_VERSION}-jdk \
         ; \
     fi && \
     if [ -n "${AWS_CLI_VERSION}" ]; then \
