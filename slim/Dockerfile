@@ -1,5 +1,6 @@
 FROM debian:bookworm-slim
-ARG JDK_VERSION=21
+ARG JDK_VERSION
+ARG AWS_CLI_VERSION
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN \
@@ -18,17 +19,25 @@ RUN \
     echo "deb [arch=amd64] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" > /etc/apt/sources.list.d/k8s.list && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
-        awscli \
         bash \
         docker-ce-cli \
         git \
         jq \
         kubectl \
-        openjdk-${JDK_VERSION}-jdk-headless \
         openssh-client \
         unzip \
         yq \
     && \
+    if [ "${JDK_VERSION}" != "nojdk" ]; then \
+        apt-get install -y --no-install-recommends \
+            openjdk-${JDK_VERSION}-jdk-headless \
+        ; \
+    fi && \
+    if [ -n "${AWS_CLI_VERSION}" ]; then \
+        apt-get install -y --no-install-recommends \
+            awscli \
+        ; \
+    fi && \
     curl -L "https://github.com/docker/compose/releases/download/v2.23.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && \
     chmod a+x /usr/local/bin/docker-compose && \
     curl -sL https://github.com/mikefarah/yq/releases/download/3.4.1/yq_linux_amd64 -o /usr/local/bin/yq3 && \
