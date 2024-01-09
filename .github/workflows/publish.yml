@@ -11,15 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        VERSION: [8, 11, 17, 21]
+        JDK_VERSION: [nojdk, 8, 11, 17, 21]
         OS: [slim, alpine]
-        AWS: ['', -aws]
-        YQ: [v4.35.2]
-        include:
-        - VERSION: nojdk
-          OS: nojdk
-          AWS: ''
-          YQ: v4.35.2
+        AWS_CLI_VERSION: ['', 2.15.5]
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -34,9 +28,7 @@ jobs:
       with:
         context: ${{ matrix.OS }}
         push: true
-        tags: carepaydev/openjdk:${{ matrix.VERSION }}-${{ matrix.OS }}${{ matrix.AWS }}
+        tags: carepaydev/openjdk:${{ matrix.JDK_VERSION }}-${{ matrix.OS }}${{ matrix.AWS_CLI_VERSION != '' && '-aws' }}
         build-args: |
-          VERSION=${{ matrix.VERSION }}
-          OS=${{ matrix.OS }}
-          AWS=${{ matrix.AWS }}
-          YQ=${{ matrix.YQ }}
+          JDK_VERSION=${{ matrix.JDK_VERSION }}
+          AWS_CLI_VERSION=${{ matrix.AWS_CLI_VERSION }}

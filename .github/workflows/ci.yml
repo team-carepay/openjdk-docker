@@ -10,15 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        VERSION: [8, 11, 17, 21]
+        JDK_VERSION: [nojdk, 8, 11, 17, 21]
         OS: [slim, alpine]
-        AWS: ['', -aws]
-        YQ: [v4.35.2]
-        include:
-        - VERSION: nojdk
-          OS: nojdk
-          AWS: ''
-          YQ: v4.35.2
+        AWS_CLI_VERSION: ['', 2.15.5]
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -27,7 +21,5 @@ jobs:
       with:
         context: ${{ matrix.OS }}
         build-args: |
-          VERSION=${{ matrix.VERSION }}
-          OS=${{ matrix.OS }}
-          AWS=${{ matrix.AWS }}
-          YQ=${{ matrix.YQ }}
+          JDK_VERSION=${{ matrix.JDK_VERSION }}
+          AWS_CLI_VERSION=${{ matrix.AWS_CLI_VERSION }}
