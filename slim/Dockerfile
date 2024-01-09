@@ -11,8 +11,8 @@ RUN \
         curl \
         gnupg2 \
     && \
-    echo "deb [arch=amd64] https://packages.adoptium.net/artifactory/deb bookworm main" > /etc/apt/sources.list.d/adoptium.list && \
-    curl -fsSL https://packages.adoptium.net/artifactory/api/gpg/key/public | gpg --dearmor -o /etc/apt/trusted.gpg.d/adoptium.gpg && \
+    curl -fsSL https://apt.corretto.aws/corretto.key | gpg --dearmor -o /etc/apt/trusted.gpg.d/corretto.gpg && \
+    echo "deb [arch=amd64] https://apt.corretto.aws stable main" > /etc/apt/sources.list.d/corretto.list && \
     echo "deb [arch=amd64] http://deb.debian.org/debian testing main" > /etc/apt/sources.list.d/testing.list && \
     curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/docker.gpg && \
     echo "deb [arch=amd64] https://download.docker.com/linux/debian bookworm stable" > /etc/apt/sources.list.d/docker.list && \
@@ -31,9 +31,8 @@ RUN \
         yq \
     && \
     if [ "${JDK_VERSION}" != "nojdk" ]; then \
-        echo 'Acquire::Retries "10";' > /etc/apt/apt.conf.d/80-retries && \
         apt-get -qq install -y --no-install-recommends \
-            temurin-${JDK_VERSION}-jdk \
+            java-${JDK_VERSION}-amazon-corretto-jdk \
         ; \
     fi && \
     if [ -n "${AWS_CLI_VERSION}" ]; then \
