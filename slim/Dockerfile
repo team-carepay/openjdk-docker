@@ -31,6 +31,7 @@ RUN \
         yq \
     && \
     if [ "${JDK_VERSION}" != "nojdk" ]; then \
+        echo 'Acquire::Retries "10";' > /etc/apt/apt.conf.d/80-retries && \
         apt-get -qq install -y --no-install-recommends \
             temurin-${JDK_VERSION}-jdk \
         ; \
