@@ -1,65 +1,35 @@
-ARG ALPINEVERSION=3.15
+ARG ALPINE_VERSION=3.19
+FROM alpine:${ALPINE_VERSION}
 
-FROM alpine:$ALPINEVERSION
+ARG JDK_VERSION
 
-ARG VERSION=11
-ARG AWS
-ARG YQ=v4.30.8
-ARG GLIBC_VER=2.35-r0
-ARG AWSCLI_VERSION=2.9.0
-
-# install glibc compatibility for alpine
 RUN \
     echo "https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
+    echo "https://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
     apk add --no-cache \
         bash \
         curl \
         docker-cli \
         docker-compose \
+        docker-credential-ecr-login \
         git \
         jq \
         kubectl \
-        openjdk$VERSION \
         openssh-client \
+        yq \
     && \
-    curl -sL https://github.com/mikefarah/yq/releases/download/3.4.1/yq_linux_amd64 -o /usr/local/bin/yq3 && \
-    chmod +x /usr/local/bin/yq3 && \
-    curl -sL https://github.com/mikefarah/yq/releases/download/${YQ}/yq_linux_amd64 -o /usr/local/bin/yq && \
-    chmod +x /usr/local/bin/yq && \
-    rm -rf /var/cache/apk/* /usr/lib/jvm/default-jvm/demo /usr/lib/jvm/default-jvm/man
+    if [ "${JDK_VERSION}" != "nojdk" ]; then \
+        apk add --no-cache \
+            openjdk${JDK_VERSION} \
+        && \
+        rm -rf /usr/lib/jvm/default-jvm/demo /usr/lib/jvm/default-jvm/man \
+        ; \
+    fi && \
+    if [ -n "${AWS_CLI_VERSION}" ]; then \
+        apk add --no-cache \
+            aws-cli \
+        ; \
+    fi && \
+    rm -rf /var/cache/apk/*
 
-RUN \
-    if [ -n "$AWS" ]; then \
-      apk add --no-cache --virtual binutils-pack \
-          binutils \
-      && \
-      curl -sL https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub -o /etc/apk/keys/sgerrand.rsa.pub && \
-      curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-${GLIBC_VER}.apk && \
-      curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-bin-${GLIBC_VER}.apk && \
-      apk add --no-cache --virtual glibc-pack \
-          glibc-${GLIBC_VER}.apk \
-          glibc-bin-${GLIBC_VER}.apk \
-      && \
-      apk --no-cache del \
-          binutils-pack \
-      && \
-      rm glibc-${GLIBC_VER}.apk && \
-      rm glibc-bin-${GLIBC_VER}.apk && \
-      ln -sf /usr/glibc-compat/lib/ld-linux-x86-64.so.2 /lib64/ld-linux-x86-64.so.2 && \
-      curl -sL https://awscli.amazonaws.com/awscli-exe-linux-x86_64-${AWSCLI_VERSION}.zip -o awscliv2.zip && \
-      unzip -q awscliv2.zip && \
-      aws/install && \
-      apk add --no-cache \
-         docker-credential-ecr-login \
-      && \
-      rm -rf \
-          awscliv2.zip \
-          aws \
-          /usr/local/aws-cli/v2/current/dist/aws_completer \
-          /usr/local/aws-cli/v2/current/dist/awscli/data/ac.index \
-          /usr/local/aws-cli/v2/current/dist/awscli/examples \
-          /var/cache/apk/* \
-      && \
-      find /usr/local/aws-cli/v2/current/dist/awscli/botocore/data -name examples-1.json -delete; \
-    fi
 ENTRYPOINT ["/bin/bash"]
