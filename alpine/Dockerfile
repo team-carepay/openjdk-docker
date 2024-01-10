@@ -2,6 +2,7 @@ ARG ALPINE_VERSION=3.19
 FROM alpine:${ALPINE_VERSION}
 
 ARG JDK_VERSION
+ARG AWS_CLI_VERSION
 
 RUN \
     echo "https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
