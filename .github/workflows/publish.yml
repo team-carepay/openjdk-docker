@@ -11,9 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        JDK_VERSION: [nojdk, 11, 17, 21]
+        JDK_VERSION: [nojdk, 11, 17, 21, 22]
         OS: [slim, alpine]
-        AWS_CLI_VERSION: ['', 2.15.5]
+        AWS_CLI_VERSION: ['', 2.15.35]
     steps:
     - name: Checkout
       uses: actions/checkout@v4
