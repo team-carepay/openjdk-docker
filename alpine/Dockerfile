@@ -20,8 +20,10 @@ RUN \
         yq \
     && \
     if [ "${JDK_VERSION}" != "nojdk" ]; then \
+        wget -O /etc/apk/keys/amazoncorretto.rsa.pub https://apk.corretto.aws/amazoncorretto.rsa.pub && \
+        echo "https://apk.corretto.aws" >> /etc/apk/repositories && \
         apk add --no-cache \
-            openjdk${JDK_VERSION} \
+            amazon-corretto-${JDK_VERSION} \
         && \
         rm -rf /usr/lib/jvm/default-jvm/demo /usr/lib/jvm/default-jvm/man \
         ; \
