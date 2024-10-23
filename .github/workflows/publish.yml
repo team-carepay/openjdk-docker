@@ -28,7 +28,7 @@ jobs:
       with:
         context: ${{ matrix.OS }}
         push: true
-        tags: carepaydev/openjdk:j${{ matrix.JDK_VERSION }}-${{ matrix.OS }}${{ matrix.AWS_CLI_VERSION != '' && '-aws' || '' }}
+        tags: carepaydev/openjdk:${{ matrix.JDK_VERSION }}-${{ matrix.OS }}${{ matrix.AWS_CLI_VERSION != '' && '-aws' || '' }}
         build-args: |
           JDK_VERSION=${{ matrix.JDK_VERSION }}
           AWS_CLI_VERSION=${{ matrix.AWS_CLI_VERSION }}
