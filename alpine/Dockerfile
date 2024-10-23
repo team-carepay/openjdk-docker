@@ -11,7 +11,7 @@ RUN \
         bash \
         curl \
         docker-cli \
-        docker-compose \
+        docker-cli-compose \
         docker-credential-ecr-login \
         git \
         jq \
