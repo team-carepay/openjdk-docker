@@ -1,4 +1,4 @@
-FROM debian:bookworm-slim
+FROM debian:trixie-slim
 ARG JDK_VERSION
 ARG AWS_CLI_VERSION
 
@@ -40,6 +40,8 @@ RUN \
         apt-get -qq install -y --no-install-recommends \
             awscli \
             amazon-ecr-credential-helper \
+        && mkdir -p ~/.docker \
+        && echo '{ "credsStore": "ecr-login" }' > ~/.docker/config.json \
         ; \
     fi && \
     curl -sL https://download.docker.com/linux/static/stable/x86_64/docker-26.1.4.tgz | tar xzv --strip 1 -C /usr/local/bin docker/docker && \
