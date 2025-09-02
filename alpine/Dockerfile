@@ -1,4 +1,4 @@
-ARG ALPINE_VERSION=3.20.3
+ARG ALPINE_VERSION=3.22.1
 FROM alpine:${ALPINE_VERSION}
 
 ARG JDK_VERSION
@@ -31,6 +31,8 @@ RUN \
     if [ -n "${AWS_CLI_VERSION}" ]; then \
         apk add --no-cache \
             aws-cli \
+        && mkdir -p ~/.docker \
+        && echo '{ "credsStore": "ecr-login" }' > ~/.docker/config.json \
         ; \
     fi && \
     rm -rf /var/cache/apk/*
