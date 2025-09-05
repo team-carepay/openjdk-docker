@@ -45,6 +45,8 @@ RUN \
         ; \
     fi && \
     curl -sL https://download.docker.com/linux/static/stable/x86_64/docker-26.1.4.tgz | tar xzv --strip 1 -C /usr/local/bin docker/docker && \
+    curl -fsSL https://github.com/daveshanley/vacuum/releases/download/v0.17.11/vacuum_0.17.11_linux_x86_64.tar.gz | tar xz -C /usr/local/bin vacuum && \
+    curl -fsSL https://github.com/google/yamlfmt/releases/download/v0.17.2/yamlfmt_0.17.2_Linux_x86_64.tar.gz | tar xzv -C /usr/local/bin yamlfmt && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get -qq clean
 

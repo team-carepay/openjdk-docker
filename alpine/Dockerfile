@@ -28,6 +28,8 @@ RUN \
         rm -rf /usr/lib/jvm/default-jvm/demo /usr/lib/jvm/default-jvm/man \
         ; \
     fi && \
+    curl -fsSL https://github.com/daveshanley/vacuum/releases/download/v0.17.11/vacuum_0.17.11_linux_x86_64.tar.gz | tar xz -C /usr/local/bin vacuum && \
+    curl -fsSL https://github.com/google/yamlfmt/releases/download/v0.17.2/yamlfmt_0.17.2_Linux_x86_64.tar.gz | tar xz -C /usr/local/bin yamlfmt && \
     if [ -n "${AWS_CLI_VERSION}" ]; then \
         apk add --no-cache \
             aws-cli \
