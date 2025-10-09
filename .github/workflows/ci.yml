@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        JDK_VERSION: [nojdk, 11, 17, 21, 22]
+        JDK_VERSION: [nojdk, 11, 17, 21, 25]
         OS: [slim, alpine]
         AWS_CLI_VERSION: ['', 2.15.35]
     steps:
