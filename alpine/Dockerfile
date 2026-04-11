@@ -1,7 +1,7 @@
 ARG ALPINE_VERSION=3.23.3
 FROM alpine:${ALPINE_VERSION}
 
-ARG JDK_VERSION
+ARG JDK_VERSION=21
 ARG AWS_CLI_VERSION
 
 RUN \
@@ -28,8 +28,8 @@ RUN \
         rm -rf /usr/lib/jvm/default-jvm/demo /usr/lib/jvm/default-jvm/man \
         ; \
     fi && \
-    curl -fsSL https://github.com/daveshanley/vacuum/releases/download/v0.17.11/vacuum_0.17.11_linux_x86_64.tar.gz | tar xz -C /usr/local/bin vacuum && \
-    curl -fsSL https://github.com/google/yamlfmt/releases/download/v0.17.2/yamlfmt_0.17.2_Linux_x86_64.tar.gz | tar xz -C /usr/local/bin yamlfmt && \
+    curl -fsSL https://github.com/daveshanley/vacuum/releases/download/v0.25.8/vacuum_0.25.8_linux_x86_64.tar.gz | tar xz -C /usr/local/bin vacuum && \
+    curl -fsSL https://github.com/google/yamlfmt/releases/download/v0.21.0/yamlfmt_0.21.0_Linux_x86_64.tar.gz | tar xz -C /usr/local/bin yamlfmt && \
     if [ -n "${AWS_CLI_VERSION}" ]; then \
         apk add --no-cache \
             aws-cli \
