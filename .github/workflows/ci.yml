@@ -30,7 +30,7 @@ jobs:
         docker run --rm \
           -e JDK_VERSION="${{ matrix.JDK_VERSION }}" \
           -e AWS_CLI_VERSION="${{ matrix.AWS_CLI_VERSION }}" \
-          openjdk:ci-test bash -c '
+          openjdk:ci-test -c '
             set -e
             bash --version
             curl --version
@@ -39,7 +39,7 @@ jobs:
             docker --version
             kubectl version --client
             yq --version
-            vacuum --version
+            vacuum version
             yamlfmt --version
             if [ "$JDK_VERSION" != "nojdk" ]; then java -version; fi
             if [ -n "$AWS_CLI_VERSION" ]; then aws --version; fi
