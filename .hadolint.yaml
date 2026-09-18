@@ -1,0 +1,7 @@
+ignored:
+# Rolling CI toolbox image: pinning every apk/apt package defeats the point
+- DL3018  # apk add without =<version>
+- DL3008  # apt-get install without =<version>
+# The single long RUN chain is intentional (layer count); pipefail would need a
+# SHELL directive in both variants for no real gain here
+- DL4006
