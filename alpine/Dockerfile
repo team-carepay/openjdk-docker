@@ -27,7 +27,7 @@ RUN \
         yq \
     && \
     if [ "${JDK_VERSION}" != "nojdk" ]; then \
-        wget -O /etc/apk/keys/amazoncorretto.rsa.pub https://apk.corretto.aws/amazoncorretto.rsa.pub && \
+        curl -fsSL -o /etc/apk/keys/amazoncorretto.rsa.pub https://apk.corretto.aws/amazoncorretto.rsa.pub && \
         echo "https://apk.corretto.aws" >> /etc/apk/repositories && \
         apk add --no-cache \
             amazon-corretto-${JDK_VERSION} \
