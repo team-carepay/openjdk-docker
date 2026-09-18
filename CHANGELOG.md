@@ -12,6 +12,15 @@ tooling.
 
 ## [Unreleased]
 
+### Added
+
+- Smoke-test every image built by CI. `ci.yml` now loads the built image into
+  the runner (`load: true`) and runs each bundled tool's version command —
+  `bash`, `curl`, `git`, `jq`, `docker`, `kubectl`, `yq`, `vacuum` and
+  `yamlfmt`, plus `java` unless `JDK_VERSION=nojdk` and `aws` when
+  `AWS_CLI_VERSION` is set — so a tool that fails to install breaks the build
+  instead of reaching a release
+
 ## [1.35] - 2026-09-18
 
 ### Added
