@@ -12,6 +12,8 @@ tooling.
 
 ## [Unreleased]
 
+## [1.35] - 2026-09-18
+
 ### Added
 
 - Add this `CHANGELOG.md`, following [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
@@ -142,7 +144,8 @@ See the git history for what they contained:
 git log --oneline v1.1..v1.25
 ```
 
-[unreleased]: https://github.com/team-carepay/openjdk-docker/compare/v1.34...HEAD
+[unreleased]: https://github.com/team-carepay/openjdk-docker/compare/v1.35...HEAD
+[1.35]: https://github.com/team-carepay/openjdk-docker/compare/v1.34...v1.35
 [1.34]: https://github.com/team-carepay/openjdk-docker/compare/v1.33...v1.34
 [1.33]: https://github.com/team-carepay/openjdk-docker/compare/v1.32...v1.33
 [1.32]: https://github.com/team-carepay/openjdk-docker/compare/v1.31...v1.32
