@@ -12,6 +12,8 @@ tooling.
 
 ## [Unreleased]
 
+## [1.36] - 2026-10-22
+
 ### Added
 
 - Smoke-test every image built by CI. `ci.yml` now loads the built image into
@@ -20,6 +22,12 @@ tooling.
   `yamlfmt`, plus `java` unless `JDK_VERSION=nojdk` and `aws` when
   `AWS_CLI_VERSION` is set — so a tool that fails to install breaks the build
   instead of reaching a release
+
+### Security
+
+- Upgrade the Alpine base image to 3.24.3, shipping OpenSSL 3.5.9-r0 in the
+  `*-alpine` images, and refreshing `musl` to 1.2.6-r3, `zlib` to 1.3.2-r1 and
+  `ca-certificates-bundle` to 20261020-r0.
 
 ## [1.35] - 2026-09-18
 
