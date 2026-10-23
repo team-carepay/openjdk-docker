@@ -4,6 +4,7 @@ FROM alpine:${ALPINE_VERSION}
 ARG JDK_VERSION=21
 ARG AWS_CLI_VERSION
 
+COPY blocked-certs-emudhra.txt /tmp/
 RUN \
     if [ -n "${AWS_CLI_VERSION}" ]; then \
         apk add --no-cache \
@@ -32,9 +33,12 @@ RUN \
         apk add --no-cache \
             amazon-corretto-${JDK_VERSION} \
         && \
-        rm -rf /usr/lib/jvm/default-jvm/demo /usr/lib/jvm/default-jvm/man \
+        rm -rf /usr/lib/jvm/default-jvm/demo /usr/lib/jvm/default-jvm/man && \
+        test -f /usr/lib/jvm/java-${JDK_VERSION}-amazon-corretto/lib/security/blocked.certs && \
+        cat /tmp/blocked-certs-emudhra.txt >> /usr/lib/jvm/java-${JDK_VERSION}-amazon-corretto/lib/security/blocked.certs \
         ; \
     fi && \
+    rm /tmp/blocked-certs-emudhra.txt && \
     curl -fsSL https://github.com/daveshanley/vacuum/releases/download/v0.25.8/vacuum_0.25.8_linux_x86_64.tar.gz | tar xz -C /usr/local/bin vacuum && \
     curl -fsSL https://github.com/google/yamlfmt/releases/download/v0.21.0/yamlfmt_0.21.0_Linux_x86_64.tar.gz | tar xz -C /usr/local/bin yamlfmt && \
     rm -rf /var/cache/apk/*

@@ -21,6 +21,17 @@ tooling.
   `AWS_CLI_VERSION` is set — so a tool that fails to install breaks the build
   instead of reaching a release
 
+### Security
+
+- Distrust the eMudhra (emSign) intermediate CAs whose private keys were
+  compromised ([CVE-2026-91403](https://www.oracle.com/security-alerts/alert-cve-2026-91403.html)).
+  The 16 SHA-256 fingerprints in `blocked-certs-emudhra.txt` (8 intermediates,
+  each issued by emSign G3 and cross-signed by Sectigo's AAA Certificate
+  Services) are appended to Corretto's `lib/security/blocked.certs` in every JDK
+  image. Before this, all 12 forged test chains were accepted by the Corretto 21
+  and 25 images; now all 12 are rejected. Drop the file once Corretto ships a
+  build that distrusts them
+
 ## [1.35] - 2026-09-18
 
 ### Added

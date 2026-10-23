@@ -3,6 +3,7 @@ ARG JDK_VERSION=21
 ARG AWS_CLI_VERSION
 
 ENV DEBIAN_FRONTEND=noninteractive
+COPY blocked-certs-emudhra.txt /tmp/
 RUN \
     apt-get -qq update && \
     apt-get -qq install -y --no-install-recommends \
@@ -34,8 +35,12 @@ RUN \
     if [ "${JDK_VERSION}" != "nojdk" ]; then \
         apt-get -qq install -y --no-install-recommends \
             java-${JDK_VERSION}-amazon-corretto-jdk \
+        && \
+        test -f /usr/lib/jvm/java-${JDK_VERSION}-amazon-corretto/lib/security/blocked.certs && \
+        cat /tmp/blocked-certs-emudhra.txt >> /usr/lib/jvm/java-${JDK_VERSION}-amazon-corretto/lib/security/blocked.certs \
         ; \
     fi && \
+    rm /tmp/blocked-certs-emudhra.txt && \
     if [ -n "${AWS_CLI_VERSION}" ]; then \
         apt-get -qq install -y --no-install-recommends \
             awscli \
