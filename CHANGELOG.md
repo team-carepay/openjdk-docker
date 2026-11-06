@@ -12,6 +12,13 @@ tooling.
 
 ## [Unreleased]
 
+## [1.37] - 2026-11-05
+
+### Security
+
+- Upgrade the Alpine base image to 3.24.4, refreshing `apk-tools` and `libapk`
+  to 3.0.9-r0 in the `*-alpine` images. OpenSSL stays at 3.5.9-r0.
+
 ## [1.36] - 2026-10-23
 
 ### Added
@@ -161,7 +168,9 @@ See the git history for what they contained:
 git log --oneline v1.1..v1.25
 ```
 
-[unreleased]: https://github.com/team-carepay/openjdk-docker/compare/v1.35...HEAD
+[unreleased]: https://github.com/team-carepay/openjdk-docker/compare/v1.37...HEAD
+[1.37]: https://github.com/team-carepay/openjdk-docker/compare/v1.36...v1.37
+[1.36]: https://github.com/team-carepay/openjdk-docker/compare/v1.35...v1.36
 [1.35]: https://github.com/team-carepay/openjdk-docker/compare/v1.34...v1.35
 [1.34]: https://github.com/team-carepay/openjdk-docker/compare/v1.33...v1.34
 [1.33]: https://github.com/team-carepay/openjdk-docker/compare/v1.32...v1.33
